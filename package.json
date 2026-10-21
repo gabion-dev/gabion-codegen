@@ -1,0 +1,47 @@
+{
+  "name": "gabion-codegen",
+  "version": "0.3.0",
+  "description": "The Gabion manifest schema and the code generators of a Gabion project: module loader and backend manifest records from the manifest schema, status unions and form parsers from the OpenAPI spec",
+  "license": "BUSL-1.1",
+  "author": "Pikiner, Inc.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabion-dev/gabion-codegen.git"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./manifest": {
+      "types": "./dist/manifest-schema.d.ts",
+      "default": "./dist/manifest-schema.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "bin": {
+    "gabion-generate-module-loader": "dist/cli/generate-module-loader.js",
+    "gabion-generate-manifest-records": "dist/cli/generate-manifest-records.js",
+    "gabion-generate-form-parsers": "dist/cli/generate-form-parsers.js",
+    "gabion-generate-status-unions": "dist/cli/generate-status-unions.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/mark-executable.js",
+    "prebuild": "node scripts/clean-dist.js",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "typescript": "^6.0.3"
+  }
+}
