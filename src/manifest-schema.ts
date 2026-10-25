@@ -36,6 +36,15 @@ export type NavPlacement = z.infer<typeof navPlacementSchema>;
 
 const stringList = z.array(z.string()).readonly();
 
+/**
+ * A Maven coordinate `group:artifact:version` — three non-empty parts,
+ * no whitespace. Only the shape is judged here: whether the artifact
+ * exists is the build's question, answered by Gradle resolution.
+ */
+const mavenCoordinateSchema = z
+  .string()
+  .regex(/^[^\s:]+:[^\s:]+:[^\s:]+$/, "a Maven coordinate group:artifact:version");
+
 /** Page entry within a Gabion module manifest. */
 export const manifestPageSchema = z
   .strictObject({
@@ -217,6 +226,17 @@ export const manifestModuleSchema = z
      * exception leaves with the module.
      */
     unreferencedFiles: stringList.optional(),
+    /**
+     * Java libraries this module's backend needs beyond the template's,
+     * as Maven coordinates `group:artifact:version`. The project's build
+     * declares them from this list (implementation for a production
+     * module, developmentOnly for a devOnly one) and refuses a version
+     * the resolution changed, so a module's library has one owner — the
+     * module — and leaves with it. The module's frontend dependencies
+     * are not here: its own package.json in modules_frontend/{styleDir}/
+     * declares them, and npm owns that file.
+     */
+    javaDependencies: z.array(mavenCoordinateSchema).readonly().optional(),
     /** Git tag marking the baseline state at install/restore/replace time. */
     baselineTag: z.string().optional(),
   })
