@@ -261,6 +261,12 @@ export const manifestStarterSchema = z
     features: starterFeaturesSchema,
     files: stringList,
     themes: stringList,
+    /**
+     * Git tag marking the starter's baseline state — the project's
+     * creation or the last replacement of the starter; the starter's
+     * edits are measured from it, as a module's are from its own.
+     */
+    baselineTag: z.string().optional(),
   })
   .readonly();
 export type ManifestStarter = z.infer<typeof manifestStarterSchema>;

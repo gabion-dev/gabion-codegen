@@ -1,6 +1,6 @@
 {
   "name": "gabion-codegen",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "The Gabion manifest schema and the code generators of a Gabion project: module loader and backend manifest records from the manifest schema, status unions and form parsers from the OpenAPI spec",
   "license": "BUSL-1.1",
   "author": "Pikiner, Inc.",
