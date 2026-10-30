@@ -10,7 +10,7 @@
   },
   "type": "module",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=22.0.0"
   },
   "exports": {
     ".": {
@@ -41,7 +41,7 @@
     "zod": "^4.1.0"
   },
   "devDependencies": {
-    "@types/node": "^24.19.2",
-    "typescript": "^6.0.3"
+    "@types/node": "^22.20.5",
+    "typescript": "^7.0.2"
   }
 }
